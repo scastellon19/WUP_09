@@ -96,13 +96,50 @@ anova(best.model,Perchwtall)
 The best model is all the variables.  
 
 ### Best Two regressor model
-The best model using on two variables is height and width. 
+The best two regressor models is height and width. 
 
 ## Pike
 
+Find the best two predictors for weight of a Pike   
+```{r}
+Pikewtall=lm(Weight~.-Weight,data=Pike)
+summary.lm(Pikewtall)
+```
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ .,
+               data = Pike,
+               nbest = 2,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+library(car)
+subsets(regsubsets.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
+```
+
+```{r}
+which.max(summary.out$adjr2)
+```
+```{r}
+summary.out$which[3,]
+```
+```{r}
+best.model <- lm(Weight~Height+Width,data=Pike)
+summary(best.model)
+```
+```{r}
+anova(best.model,Pikewtall)
+```
 ### Best Models
+The best model is all variables.
+
 
 ### Best Two regressor model
+The best two regressor models is Length 1 and Length 3 
 
 ## Roach
 
