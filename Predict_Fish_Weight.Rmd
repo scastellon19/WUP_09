@@ -128,7 +128,7 @@ which.max(summary.out$adjr2)
 summary.out$which[3,]
 ```
 ```{r}
-best.model <- lm(Weight~Height+Width,data=Pike)
+best.model <- lm(Weight~Length1+Length3,data=Pike)
 summary(best.model)
 ```
 ```{r}
@@ -171,7 +171,7 @@ which.max(summary.out$adjr2)
 summary.out$which[3,]
 ```
 ```{r}
-best.model <- lm(Weight~Height+Width,data=Roach)
+best.model <- lm(Weight~Length3+Width,data=Roach)
 summary(best.model)
 ```
 ```{r}
@@ -186,3 +186,6 @@ The best model is all variables.
 The best two regressor models is Width and Length 3
 
 ## Final Summary Statements
+Perch=The best model is all the variables with the the best two regressor models is height and width.     
+Pike = The best model is all variables with the best two regressor models is Length 1 and Length 3.  
+Roach=The best model is all variables with the best two regressor models is Width and Length 3.  
